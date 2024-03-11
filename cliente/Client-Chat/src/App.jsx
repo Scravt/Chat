@@ -1,11 +1,25 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import io from 'socket.io-client';
+import { Loggin } from './loggin/Loggin';
+import { Chat } from './pages/Chat/Chat';
+
 
 function App() {
   const [data, setData] = useState([]);
-  const [messageInput, setMessageInput] = useState('');
+  const [messageInput, setMessageInput] = useState('lorenzo');
   const [socket, setSocket] = useState(null);
+  const [username, setUsername] = useState('');
+  const [isLogged, setIsLogged] = useState(false);
+
+
+  const onChangePlayerName = (e) => {
+    setUsername(e.target.value);
+  }
+
+  const onLoggin = () => {
+    setIsLogged(true);
+  }
 
   useEffect(() => {
     const _socket = io('http://localhost:3000');
@@ -17,7 +31,7 @@ function App() {
     setSocket(_socket);
 
     return () => {
-      _socket.disconnect(); 
+      _socket.disconnect();
     };
   }, []);
 
@@ -26,33 +40,18 @@ function App() {
 
     if (socket && messageInput.trim() !== '') {
       // Enviar mensaje al servidor
-      socket.emit('chat message', { sender: 'user', message: messageInput });
+      socket.emit('chat message', { sender: username, message: messageInput });
       setMessageInput('');
     }
   };
 
+  if (!isLogged) {
+    return <Loggin onChangePlayerName={onChangePlayerName} onLoggin={onLoggin} />
+  }
+
   return (
     <div className="App">
-      <section>
-        <h1>Chat</h1>
-        <div>
-          {data.map((message, index) => (
-            <div key={index}>
-              <strong>{message.sender}: </strong>
-              {message.message}
-            </div>
-          ))}
-        </div>
-        <form onSubmit={sendMessage}>
-          <input
-            type="text"
-            placeholder="Escribe un mensaje"
-            value={messageInput}
-            onChange={(e) => setMessageInput(e.target.value)}
-          />
-          <button type="submit">Enviar</button>
-        </form>
-      </section>
+        <Chat/>
     </div>
   );
 }
