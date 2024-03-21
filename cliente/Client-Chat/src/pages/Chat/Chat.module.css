@@ -1,12 +1,13 @@
 .theChat {
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: inherit;
+
 }
 
 .ChatAndUser {
     display: flex;
-    flex-grow: 1; /* Para que ocupe todo el espacio vertical restante */
+    flex-grow: 1; 
     width: 100%;
 }
