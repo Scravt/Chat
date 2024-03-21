@@ -1,0 +1,22 @@
+.ContainerUser{
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.User{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: violet;
+    border-color: green;
+    border-width: 2px;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+

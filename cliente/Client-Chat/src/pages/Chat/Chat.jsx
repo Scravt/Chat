@@ -8,7 +8,7 @@ export const Chat = () => {
   return (
     <div className={styles.theChat}>
       <Header/>
-      <div>
+      <div className={styles.ChatAndUser}>
         <SiderData/>
         <Room/>
       </div>
