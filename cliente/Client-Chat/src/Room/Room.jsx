@@ -4,15 +4,15 @@ import { SecUserRoomList } from '../seccionUsersandsList/SecUserRoomList'
 import styles from './Room.module.css'
 import { BoxMessage } from '../BoxMessage/BoxMessage'
 
-export const Room = () => {
+export const Room = ({data, username, sendMessage}) => {
   return (
     <div className={styles.Room}>
       <span className={styles.title}>Room name</span>
       <div className={styles.ContainerChatAndUsers}>
-        <Chatbox />
+        <Chatbox data={data}/>
         <SecUserRoomList />
       </div>
-      <BoxMessage />
+      <BoxMessage  username ={username} sendMessage={sendMessage} />
     </div>
   )
 }

@@ -4,10 +4,10 @@ import { ListRooms } from '../listRooms/ListRooms'
 import  styles  from './SiderData.module.css'
 
 
-export const SiderData = () => {
+export const SiderData = ({username}) => {
   return (
     <div className={styles.sider}>
-        <User/>
+        <User username = {username}/>
         <ListRooms />
     </div>
   )

@@ -1,22 +1,19 @@
 import { useState } from 'react';
 import styles from './BoxMessage.module.css';
 
-export const BoxMessage = () => {
+export const BoxMessage = ({username,sendMessage}) => {
     const[message, setMessage] = useState('');
  
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            sendMessage();
-        }
+            sendMessage(message);
+            setMessage('');}
     };
-    const sendMessage = () => {
-        console.log('Mensaje enviado:', message);
-        setMessage('');
-    };
+  
 
     return (
         <div className={styles.message}>
-            <span className={styles.messageTitle}>UserAleatorio :</span>
+            <span className={styles.messageTitle}>{username} :</span>
             <input
                 type="text"
                 placeholder="Type a message"

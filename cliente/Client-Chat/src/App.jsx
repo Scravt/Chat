@@ -9,7 +9,7 @@ function App() {
   const [data, setData] = useState([]);
   const [messageInput, setMessageInput] = useState('lorenzo');
   const [socket, setSocket] = useState(null);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('defaultUser');
   const [isLogged, setIsLogged] = useState(false);
 
 
@@ -35,13 +35,13 @@ function App() {
     };
   }, []);
 
-  const sendMessage = (event) => {
-    event.preventDefault();
+  const sendMessage = (message) => {
 
     if (socket && messageInput.trim() !== '') {
       // Enviar mensaje al servidor
-      socket.emit('chat message', { sender: username, message: messageInput });
-      setMessageInput('');
+      socket.emit('chat message', { sender: username, message: message});
+      console.log('message:', message);
+   
     }
   };
 
@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-        <Chat/>
+        <Chat data = {data} username={username} sendMessage={sendMessage}/>
     </div>
   );
 }
