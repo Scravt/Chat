@@ -1,5 +1,6 @@
 .messageTitle{
     padding:0 1rem;
+    border: 1px solid #000;
 }
 
 .inputMessage{
@@ -11,8 +12,10 @@
     outline: none; /* Elimina el contorno al enfocar el input */
     color: black; /* Establece el color del texto */
     flex-grow: 1;
+    border: 1px solid #000;
    
 }
 .message{
     display: flex;
+    
 }
