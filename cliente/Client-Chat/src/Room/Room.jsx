@@ -10,7 +10,7 @@ export const Room = ({data, username, sendMessage}) => {
       <span className={styles.title}>Room name</span>
       <div className={styles.ContainerChatAndUsers}>
         <Chatbox data={data}/>
-        <SecUserRoomList />
+        <SecUserRoomList data={data} />
       </div>
       <BoxMessage  username ={username} sendMessage={sendMessage} />
     </div>

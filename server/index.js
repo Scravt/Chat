@@ -1,15 +1,13 @@
 import express from 'express';
 import logger from 'morgan';
 import cors from 'cors';
-
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
+//creaccion de servidor
 const port = process.env.PORT ?? 3000;
 const app = express();
 const httpServer = createServer(app);
-
-
 const io = new Server(httpServer, {
   cors: {
     origin: 'http://localhost:5173',
@@ -30,17 +28,32 @@ app.use(
 app.use(logger('dev'));
 
 
+//variables
+const users = [];
+const messageslist = [];
+const data = [];
 
+
+
+// eventos del socket
 io.on('connection', (socket) => {
   console.log('a user connected');
 
-  // Manejo de desconexiones
+  socket.on('login', (username, id) => {
+    console.log('login:', username);
+    users.push({username, id});
+    io.emit('users', users);
+    console.log(users);
+  });
+
+  // Manejo de desconexionesS
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
   // Manejo de mensajes del chat
   socket.on('chat message', (message) => {
+    messageslist.push(message);
     console.log('message:', message);
 
     // Broadcast del mensaje a todos los clientes conectados
@@ -49,7 +62,7 @@ io.on('connection', (socket) => {
 });
 
 
-
+// Iniciar el servidor
 httpServer.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

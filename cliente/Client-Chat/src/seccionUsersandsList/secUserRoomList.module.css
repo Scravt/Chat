@@ -1,5 +1,17 @@
-.UsersList{
+.ContainerUsersList{
     width: 13rem;
     border-left: 1px solid #000000;
     min-width: 13rem;
+}
+.UsersList{
+    margin:  0 2rem;
+}
+.user{
+    list-style:none
+}
+.title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    padding: 0 2rem;
 }
