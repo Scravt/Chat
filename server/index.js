@@ -37,15 +37,31 @@ const data = [];
 
 // eventos del socket
 io.on('connection', (socket) => {
-  console.log('a user connected');
 
+  //login de usuario
   socket.on('login', (username, id) => {
     console.log('login:', username);
-    users.push({username, id});
+    users.push({ username, id });
     io.emit('users', users);
     console.log(users);
   });
 
+  //uniones a rooms
+  socket.on('joinRoom', (room) => {
+    console.log('joinRoom:', room);
+    socket.join(room);
+  });
+
+  //salida de rooms
+  socket.on('leaveRoom', (room) => {
+    console.log('leaveRoom:', room);
+    socket.leave(room);
+  });
+
+  //consulta de rooms aderidos
+  socket.on('rooms', () => {
+    console.log('rooms:', socket.rooms);
+  });
   // Manejo de desconexionesS
   socket.on('disconnect', () => {
     console.log('user disconnected');
@@ -56,8 +72,9 @@ io.on('connection', (socket) => {
     messageslist.push(message);
     console.log('message:', message);
 
-    // Broadcast del mensaje a todos los clientes conectados
-    io.emit('chat message', message);
+  // Broadcast del mensaje a todos los clientes conectados
+  io.emit('chat message', message);
+  
   });
 });
 
