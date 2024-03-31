@@ -25,6 +25,12 @@ function App() {
     const _socket = io('http://localhost:3000');
     setSocket(_socket);
 
+    //unirse a sala
+    _socket.emit('joinRoom', 'chat');
+
+    //salir de sala
+    _socket.emit('leaveRoom', 'chat');
+
     //escuchar mensajes
     _socket.on('chat message', (message) => {
       setData((prevData) => ({
