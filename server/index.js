@@ -62,9 +62,13 @@ io.on('connection', (socket) => {
   socket.on('rooms', () => {
     console.log('rooms:', socket.rooms);
   });
-  // Manejo de desconexionesS
-  socket.on('disconnect', () => {
+  
+   // Manejo de desconexionesS
+   socket.on('disconnect', () => {
+    users = users.filter((user) => user.id !== socket.id);
     console.log('user disconnected');
+    io.emit('users', users);
+   
   });
 
   // Manejo de mensajes del chat
