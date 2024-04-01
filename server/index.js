@@ -29,7 +29,7 @@ app.use(logger('dev'));
 
 
 //variables
-const users = [];
+let users = [];
 const messageslist = [];
 const data = [];
 
@@ -59,22 +59,27 @@ io.on('connection', (socket) => {
   });
 
   //consulta de rooms aderidos
-  socket.on('rooms', () => {
-    console.log('rooms:', socket.rooms);
+  socket.on('getSocketRooms', () => {
+    const rooms = io.sockets.adapter.rooms.get(socket.id);
+    socket.emit('socketRooms', Array.from(rooms));
   });
+
+
   // Manejo de desconexionesS
   socket.on('disconnect', () => {
+    users = users.filter((user) => user.id !== socket.id);
     console.log('user disconnected');
+    io.emit('users', users);
+   
   });
 
   // Manejo de mensajes del chat
-  socket.on('chat message', (message) => {
+  socket.on('chat message', (message,room) => {
     messageslist.push(message);
     console.log('message:', message);
 
   // Broadcast del mensaje a todos los clientes conectados
-  io.emit('chat message', message);
-  
+  io.to(room).emit('chat message', message);
   });
 });
 

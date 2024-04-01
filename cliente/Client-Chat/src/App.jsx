@@ -9,10 +9,8 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [username, setUsername] = useState('defaultUser');
   const [isLogged, setIsLogged] = useState(false);
-
+  const [room, setRoom] = useState('general');
   const [data, setData] = useState({ usersList: [], message: [{ sender: "admin", message: `Bienvenido!` }] });
-
-
 
   //setear nombre usuario
   const onChangePlayerName = (e) => {
@@ -25,14 +23,8 @@ function App() {
     const _socket = io('http://localhost:3000');
     setSocket(_socket);
 
-    //unirse a sala
-    _socket.emit('joinRoom', 'chat');
-
-    //salir de sala
-    _socket.emit('leaveRoom', 'chat');
-
     //escuchar mensajes
-    _socket.on('chat message', (message) => {
+    _socket.on('chat message', (message, room) => {
       setData((prevData) => ({
         ...prevData,
         message: [...prevData.message, message]
@@ -47,6 +39,11 @@ function App() {
       }));
     });
 
+    //escuchar salas
+    _socket.on('socketRooms', (rooms) => {
+      console.log('rooms:', rooms);
+    });
+
     //limpiar socket
     return () => {
       _socket.disconnect();
@@ -59,21 +56,47 @@ function App() {
       socket.emit('login', username, socket.id);
     }
   }
-  //enviar mensaje
-  const sendMessage = (message) => {
-    if (socket && (message !== '')) {
-      socket.emit('chat message', { sender: username, message: message });
+
+  //unirse a sala
+  const joinRoom = (room) => {
+    if (socket) {
+      socket.emit('joinRoom', room);
     }
   };
-  //funcion para loggin setea y desencadena eventoo 
+
+  //consultar salas
+  const getRooms = () =>{
+    if(socket){
+      socket.emit('rooms');
+    }
+  }
+
+  //salir de sala
+  const leaveRoom = (room) => {
+    if (socket) {
+      socket.emit('leaveRoom', room);
+    }
+  };
+
+  //enviar mensaje
+  const sendMessage = (message, room) => {
+    if (socket && (message !== '')) {
+      socket.emit('chat message', { sender: username, message: message }, 'general');
+      getRooms();
+    }
+  };
+
+  //funcion para loggin setea,desencadena eventoo loggin  y une a room general
   const onLoggin = () => {
     if (username === 'defaultUser') {
       alert('El nombre de usuario no puede estar vacio');
       return;
     }
     loggin();
+    joinRoom('general');
     setIsLogged(true);
   }
+
   //renderizado condicional de loggin
   if (!isLogged) {
     return <Loggin onChangePlayerName={onChangePlayerName} onLoggin={onLoggin} loggin={loggin} />
