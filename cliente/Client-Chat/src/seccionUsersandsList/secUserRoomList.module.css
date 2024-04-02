@@ -11,8 +11,10 @@
 }
 .title{
     padding: 0.17 2rem;
-    text-indent: 1rem;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 ul {
     list-style-type: none; 
