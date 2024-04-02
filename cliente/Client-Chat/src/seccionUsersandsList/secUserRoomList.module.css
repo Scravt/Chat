@@ -1,17 +1,25 @@
 .ContainerUsersList{
     width: 13rem;
-    border-left: 1px solid #000000;
     min-width: 13rem;
 }
 .UsersList{
-    margin:  0 2rem;
+    margin:  0 2.6rem;
 }
 .user{
+    text-indent: 0.5rem;
     list-style:none
 }
 .title{
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 1rem 0;
-    padding: 0 2rem;
+    padding: 0.17 2rem;
+    text-indent: 1rem;
+    cursor: pointer;
+}
+ul {
+    list-style-type: none; 
+}
+
+ul li::marker {
+    content: "•"; 
+    color: #42B992; 
+    margin-right: 10px; 
 }

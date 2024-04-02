@@ -3,7 +3,6 @@
 .container {
     flex-grow: 1; 
     max-height:calc(100vh - 6rem);
-    max-width: 80vw;
     overflow: auto;
 }
 
@@ -13,8 +12,8 @@
     height: auto; 
     font-size: 1rem;
     flex-grow: 1; 
-    text-indent: 0.5rem;
-    border-bottom: 1px solid #b4b2b2;
+    text-indent: 1rem;
+    border-bottom: 1px solid#EEEEEE;
     word-wrap: break-word;
     align-items: flex-start;
 }
@@ -26,4 +25,5 @@
 }
 .message{
     flex-grow: 1;
+    text-indent: 0.5rem;
 }

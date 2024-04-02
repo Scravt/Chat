@@ -1,0 +1,42 @@
+.containerActive{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 15rem;
+    border-left: 1px solid  #B2B2B2;
+}
+
+.containerMenssage{
+    height: 3rem;
+    width: 100%;
+    border-bottom: 1px solid  #B2B2B2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerUser{
+    display: flex;
+    align-items: center;
+}
+
+.buttonDisconect{
+    padding: 0.5rem;
+    width: auto;
+    border: 1px solid #B2B2B2;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #000;
+}
+
+.buttonDisconect:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+
+.user{
+    margin-left: 1rem;
+}

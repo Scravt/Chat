@@ -1,18 +1,18 @@
 .messageTitle{
     padding:0 1rem;
-    border: 1px solid #000;
+    border: 1px solid #B2B2B2;
+    background-color: #FFFFFF;
 }
 
 .inputMessage{
-    border: none; /* Elimina el borde del input */
-    background-color: transparent; /* Establece un fondo transparente para el input */
-    padding: 5px; /* Ajusta el padding según sea necesario */
-    margin: 0; /* Ajusta el margen a cero */
-    box-shadow: none; /* Elimina cualquier sombra del input */
-    outline: none; /* Elimina el contorno al enfocar el input */
-    color: black; /* Establece el color del texto */
+    border: none; 
+    background-color: #FFFFFF;
+    padding: 5px; 
+    margin: 0; 
+    outline: none; 
+    color: black; 
     flex-grow: 1;
-    border: 1px solid #000;
+    border: 1px solid #B2B2B2;
    
 }
 .message{

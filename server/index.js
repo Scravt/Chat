@@ -29,7 +29,7 @@ app.use(logger('dev'));
 
 
 //variables
-const users = [];
+let users = [];
 const messageslist = [];
 const data = [];
 
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
   socket.on('rooms', () => {
     console.log('rooms:', socket.rooms);
   });
-  
+
    // Manejo de desconexionesS
    socket.on('disconnect', () => {
     users = users.filter((user) => user.id !== socket.id);

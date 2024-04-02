@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './BoxMessage.module.css';
 
+
 export const BoxMessage = ({username,sendMessage}) => {
     const[message, setMessage] = useState('');
  
@@ -21,7 +22,9 @@ export const BoxMessage = ({username,sendMessage}) => {
                 className={styles.inputMessage}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
+                
             />
+
         </div>
     );
 };

@@ -5,7 +5,7 @@ import styles  from './ListRooms.module.css'
 export const ListRooms = () => {
   return (
     <div className={styles.ListRooms} >
-      ListRooms
+      Disfruta el chat!
     </div>
   )
 }
